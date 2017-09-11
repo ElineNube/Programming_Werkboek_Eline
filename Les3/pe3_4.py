@@ -1,1 +1,2 @@
-dagen = ['maandag', 'dinsdag', 'woensdag']
+for word in ['maandag', 'dinsdag', 'woensdag']:
+    print(word[0] + word[1])
