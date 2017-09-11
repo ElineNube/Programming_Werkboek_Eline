@@ -1,0 +1,1 @@
+dagen = ['maandag', 'dinsdag', 'woensdag']
