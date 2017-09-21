@@ -22,13 +22,14 @@ def ritprijs(leeftijd, weekendrit, afstandKM):
     kortingspercentageLeeftijd = 0.7
     kortingspercentageBeide = 0.65
     if rechtOpWeekendKorting:
-        return standaardprijs(afstandKM) * kortingspercentageWeekend
-    if rechtOpLeeftijdskorting:
-        return standaardprijs(afstandKM) * kortingspercentageLeeftijd
-    if rechtOpLeeftijdskorting and rechtOpWeekendKorting:
-        return standaardprijs(afstandKM) * kortingspercentageBeide
+        if rechtOpLeeftijdskorting:
+            return standaardprijs(afstandKM) * kortingspercentageBeide
+        else:
+            return standaardprijs(afstandKM) * kortingspercentageWeekend
     else:
-        return standaardprijs(afstandKM)
-
+        if rechtOpLeeftijdskorting:
+            return standaardprijs(afstandKM) * kortingspercentageLeeftijd
+        else:
+            return standaardprijs(afstandKM)
 
 print(ritprijs(leeftijd, weekendrit, afstandKM))
