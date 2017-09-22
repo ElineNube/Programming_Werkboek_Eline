@@ -3,7 +3,7 @@ def convert(gradenCelsius):
     return res
 
 def table():
-    formatStr = '{:5}    {:5}'
+    formatStr = '{:5}         {:5}'
     print(formatStr.format('C','F'))
     for gradenCelsius in range(-30,40,10):
         print(formatStr.format(gradenCelsius, convert(gradenCelsius)))
