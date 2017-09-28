@@ -3,15 +3,7 @@ bestand = kluizenBestand.read().splitlines()
 kluizenBestand.close
 
 #menu
-print('Kies één van de volgende opties:\n'
-      '1: Ik wil weten hoeveel kluizen nog vrij zijn\n'
-      '2: Ik wil een nieuwe kluis\n'
-      '3: Ik wil even iets uit mijn kluis halen\n'
-      '4: Ik geef mijn kluis terug\n'
-      '\n')
-keuze = int(input('Geef uw optie:'))
-if keuze < 1 or keuze >4:
-        print('Maak een geldige keuze.')
+
 
 #Keuze 1
 def toon_aantal_kluizen_vrij():
@@ -33,10 +25,12 @@ def nieuwe_kluis():
         print("Kluisnummer " + str(nieuwe_kluis) + " is voor jou gekozen.")
         wachtwoord = input("Kies een wachtwoord: ")
         bestand.append(str(nieuwe_kluis) + ';' + str(wachtwoord))
+        print('De kluis is nu voor je open!')
         save(bestand)
-#Keuze 3
+
+#keuze 3
 def kluis_format(kluisnummer, wachtwoord):
-    return str(kluisnummer) + ";" + str(wachtwoord)
+        return str(kluisnummer) + ";" + str(wachtwoord)
 
 def open_kluis():
     kluisnummer = input("Kies jouw kluisnummer: ")
@@ -56,6 +50,8 @@ def kluis_teruggeven():
         if kluis_format(kluisnummer, wachtwoord) == kluis:
             bestand.remove(kluis)
             save(bestand)
+            print('Je kluis is open en wordt uit het systeem verwijderd')
+            return
 
     print("Je wachtwoord/kluisnummer is niet juist.")
 
@@ -68,15 +64,26 @@ def save(bestand):
 
     kluizenBestand.close()
 
-#Functie is gekozen
-if keuze == 1:
-    print('Aantal kluizen vrij:' + ' ' + str(toon_aantal_kluizen_vrij()))
+def display_menu():
+    while True:
+        print('\n'
+            'Kies één van de volgende opties:\n'
+            '1: Ik wil weten hoeveel kluizen nog vrij zijn\n'
+            '2: Ik wil een nieuwe kluis\n'
+            '3: Ik wil even iets uit mijn kluis halen\n'
+            '4: Ik geef mijn kluis terug\n'
+            '\n')
+        keuze = input('Geef uw optie:')
 
-if keuze == 2:
-    nieuwe_kluis()
+        if keuze == '1':
+            print('Aantal kluizen vrij:' + ' ' + str(toon_aantal_kluizen_vrij()))
+        elif keuze == '2':
+            nieuwe_kluis()
+        elif keuze == '3':
+            open_kluis()
+        elif keuze == '4':
+            kluis_teruggeven()
+        else:
+            print('Maak een geldige keuze.')
 
-if keuze == 3:
-    open_kluis()
-
-if keuze == 4:
-    kluis_teruggeven()
+display_menu()
