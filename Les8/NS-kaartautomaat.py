@@ -1,19 +1,15 @@
 def inlezen_beginstation():
-    beginstation = ''
-    while beginstation not in stations:
-        beginstation = input('Wat is uw beginstation?')
-        if beginstation not in stations:
-            print('Uw  keuze is niet geldig. Maak een nieuwe keuze:')
-            continue
+    beginstation = input('Wat is uw beginstation?')
+    if beginstation not in stations:
+        print('Uw  keuze is niet geldig. Maak een nieuwe keuze:')
+        uitvoer()
     return beginstation
 
 def inlezen_eindstation(stations, beginstation):
-    eindstation = ''
-    while eindstation not in stations or stations.index(eindstation) <= stations.index(beginstation):
-        eindstation = input('Wat is uw eindstation?')
-        if eindstation not in stations or stations.index(eindstation) <= stations.index(beginstation):
-            print('Uw  keuze is niet geldig. Maak een nieuwe keuze:')
-            continue
+    eindstation = input('Wat is uw eindstation?')
+    if eindstation not in stations or stations.index(eindstation) <= stations.index(beginstation):
+        print('Uw  keuze is niet geldig. Maak een nieuwe keuze:')
+        uitvoer()
     return eindstation
 
 def inlezen_tussenliggende_stations(beginstation, eindstation, stations):
@@ -31,14 +27,14 @@ def omroepen_reis(stations, beginstation, eindstation):
     verschilTussenStations = str(int(nummerEindstation) - int(nummerBeginStation))
     prijsKaartje = str(int(verschilTussenStations) * prijsPerStation)
     print('\n'
-          'Het beginstation' +  ' ' + beginstation +  ' ' + 'is het' +  ' ' + nummerBeginStation + 'e' +  ' ' + 'station in het traject.\n' 
-          'Het eindstation' +  ' ' + eindstation +  ' ' + 'is het' +  ' ' + nummerEindstation + 'e' +  ' ' + 'station in het traject.\n'
-          'De afstand bedraagt' +  ' '  + verschilTussenStations + ' ' + 'station(s).\n'
-          'De prijs van het kaartje is' + ' ' + prijsKaartje + ' ' + 'euro.'
+          'Het beginstation ' + beginstation + ' is het ' + nummerBeginStation + 'e '  + 'station in het traject.\n' 
+          'Het eindstation ' + eindstation + ' is het ' + nummerEindstation + 'e ' + 'station in het traject.\n'
+          'De afstand bedraagt ' + verschilTussenStations + ' station(s).\n'
+          'De prijs van het kaartje is ' + prijsKaartje + ' euro.'
           '\n'
-          'Jij stapt in de trein in:' + ' ' + beginstation + '.\n')
+          'Jij stapt in de trein in: ' +  beginstation + '.\n')
     inlezen_tussenliggende_stations(beginstation,eindstation,stations)
-    print('\nJij stapt uit de trein in' + ' ' + eindstation + '.\n')
+    print('\nJij stapt uit de trein in ' + eindstation + '.\n')
 
 def uitvoer():
     while True:
